@@ -14,7 +14,8 @@
         <script type="text/babel">
 
             let cities = [],
-                searchCity = [];
+                searchCity = ``,
+                chooseCity = [];
 
             // 웹 브라우저가 열릴 때, CitiesData 를 불러와서 cities 배열에 넣어준다.
             window.onload = function(){
@@ -40,12 +41,17 @@
 
                     for(let ma of matchedArray) {
                         // 한번에 넣으면 단어마다 구분이 어려워서 <p> 태그로 감싸준다. 
-                        searchCity += `<p>` + ma.city + `, ` + ma.state + `</p>`
+                        searchCity += `<button type="button" onclick="choose(this)">` + ma.city + `, ` + ma.state + `</button>`
                     }
                 }
 
                 // 찾은 단어들을 id="result" 에 넣어준다.
                 document.querySelector('#result').innerHTML = searchCity;
+            }
+
+            function choose(_this) {
+                console.log(_this.innerText)
+                document.querySelector('#choose').innerHTML = `<button style="color: red">` + _this.innerText + `</button>`;
             }
 
             const searchInput = document.querySelector('#search');
@@ -59,6 +65,7 @@
 
     <body>
         <input type="text" id="search">
+        <div id="choose"></div>
         <div id="result"></div>
     </body>
 </html>

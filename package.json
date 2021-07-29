@@ -1,0 +1,31 @@
+{
+  "name": "js_search",
+  "version": "1.0.0",
+  "description": "참고블로그 <br>\r https://velog.io/@1703979/JS-30-06",
+  "main": "cities.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "devserver": "webpack serve --config webpack.config.js --progress --mode=development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaeundev/js_search.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gaeundev/js_search/issues"
+  },
+  "homepage": "https://github.com/gaeundev/js_search#readme",
+  "devDependencies": {
+    "@babel/core": "^7.14.8",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.47.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "@babel/preset-env": "^7.14.8",
+    "webpack-cli": "^4.7.2"
+  }
+}

@@ -1,71 +1,40 @@
-
 <!DOCTYPE html>
 
 <html lang="ko">
-    <head>
-        <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
 
-        <script src="./cities.js" type="text/javascript"></script>
+    <!-- ES6 문법을 사용할 수 있도록 babel 모듈을 불러온다. -->
+    <!-- <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> -->
 
-        <!-- ES6 문법을 사용할 수 있도록 babel 모듈을 불러온다. -->
-        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="/dist/data.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/dist/app.js"></script>
 
-        <!-- type="text/babel"을 통해 babel 문법이 사용된다는 것을 알린다. -->
-        <script type="text/babel">
+    <style>
+      .chooseBtn {
+        background-color: blueviolet;
+        color: white;
+      }
+    </style>
+    <!-- type="text/babel"을 통해 babel 문법이 사용된다는 것을 알린다. -->
+    <script type="text/babel">
+      //   let cities = [];
 
-            let cities = [],
-                searchCity = ``,
-                chooseCity = [];
+      // 웹 브라우저가 열릴 때, CitiesData 를 불러와서 cities 배열에 넣어준다.
+      //   window.onload = function () {
+      //     cities = CitiesData();
+      //   };
 
-            // 웹 브라우저가 열릴 때, CitiesData 를 불러와서 cities 배열에 넣어준다.
-            window.onload = function(){
-                cities = CitiesData();
-            }
+      const searchInput = document.querySelector("#search");
+      // 키를 눌렀다 떼는 순간을 감지한다.
+      searchInput.addEventListener("keyup", displayInputValue);
+    </script>
+  </head>
 
-            // cities에서 wordToMatch(검색단어)를 찾아서 리턴한다.
-            function findMatches(wordToMatch, cities) {
-                return cities.filter(v => {
-                    const regex = new RegExp(wordToMatch, 'gi');
-                    return v.city.match(regex)
-                });
-            }
-
-            // 검색된 단어를 지정한 태그에 보여준다.
-            function displayInputValue(e){
-                // 이전 검색 초기화
-                searchCity = ``;
-
-                // iuput 에 값이 있을 때만 검색어와 일치하는지 검색한다.
-                if(e.target.value !== ``) {
-                    const matchedArray = findMatches(this.value, cities);
-
-                    for(let ma of matchedArray) {
-                        // 한번에 넣으면 단어마다 구분이 어려워서 <p> 태그로 감싸준다. 
-                        searchCity += `<button type="button" onclick="choose(this)">` + ma.city + `, ` + ma.state + `</button>`
-                    }
-                }
-
-                // 찾은 단어들을 id="result" 에 넣어준다.
-                document.querySelector('#result').innerHTML = searchCity;
-            }
-
-            function choose(_this) {
-                console.log(_this.innerText)
-                document.querySelector('#choose').innerHTML = `<button style="color: red">` + _this.innerText + `</button>`;
-            }
-
-            const searchInput = document.querySelector('#search');
-
-            // 키를 눌렀다 떼는 순간을 감지한다.
-            searchInput.addEventListener("keyup", displayInputValue);
-
-        </script>
-        
-    </head>
-
-    <body>
-        <input type="text" id="search">
-        <div id="choose"></div>
-        <div id="result"></div>
-    </body>
+  <body>
+    <input type="text" id="search" />
+    <button type="button" onclick="resultSubmit()">선택 완료</button>
+    <div id="choose"></div>
+    <div id="result"></div>
+  </body>
 </html>
